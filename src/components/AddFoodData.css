@@ -1,0 +1,104 @@
+/* General styling for the outer container */
+.form-outer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+  background-color: #f0f2f5; /* A light grey background to make the form pop */
+  font-family: Arial, sans-serif;
+}
+
+/* Styling for the main heading */
+.form-outer h1 {
+  color: #1c1c1c; /* A very dark grey, almost black */
+  margin-bottom: 25px;
+  font-size: 2.5rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Styling for the form's inner container */
+.form-inner {
+  width: 100%;
+  max-width: 600px;
+  padding: 40px;
+  background-color: #000000; /* Black background for the form */
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling for labels */
+.form-inner label {
+  display: block;
+  font-size: 1rem;
+  color: #ffffff; /* White text for contrast */
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+/* Styling for all input fields */
+.form-inner input[type='text'],
+.form-inner input[type='file'] {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: 1px solid #333; /* Dark grey border */
+  background-color: #1c1c1c; /* Dark background for inputs */
+  color: #ffffff; /* White text color */
+  font-size: 1rem;
+  box-sizing: border-box; /* Ensures padding doesn't affect width */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Styling for file input specifically */
+.form-inner input[type='file']::file-selector-button {
+  background-color: #e50914; /* Red color for the button part */
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.form-inner input[type='file']::file-selector-button:hover {
+  background-color: #f40612; /* A brighter red on hover */
+}
+
+
+/* Focus effect for inputs */
+.form-inner input:focus {
+  outline: none;
+  border-color: #e50914; /* Red border on focus */
+  box-shadow: 0 0 8px rgba(229, 9, 20, 0.5); /* Glowing effect */
+}
+
+/* Styling for the submit button */
+.form-inner button[type='submit'] {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #e50914; /* Main red color */
+  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Hover effect for the submit button */
+.form-inner button[type='submit']:hover {
+  background-color: #f40612; /* Slightly brighter red on hover */
+  transform: translateY(-2px); /* Slight lift effect */
+}
+
+/* Remove default br tags spacing if needed */
+.form-inner br {
+    display: none;
+}
