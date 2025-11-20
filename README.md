@@ -1,70 +1,153 @@
-# Getting Started with Create React App
+# 🧑‍🍳 FoodDev Admin Panel – React + Firebase
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is the **admin web panel** for the FoodDev project.  
+It is built with **React** and uses **Firebase Firestore** to add and manage food items that are displayed in the **FoodDev React Native mobile app**.
 
-## Available Scripts
+Using this panel, an admin can:
 
-In the project directory, you can run:
+- Add new food items
+- Set name, description, price, category (Veg / Non-Veg)
+- Provide restaurant name, address, phone number
+- Provide an image URL for the food
 
-### `npm start`
+All data is stored in Firestore collection: **`FoodData`**.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🚀 Features
 
-### `npm test`
+- 🌐 React single-page application
+- 🧾 Form to add food data:
+  - `foodName`
+  - `foodDescription`
+  - `foodPrice`
+  - `foodCategory`
+  - `foodImage` (URL)
+  - `restraurantName`
+  - `restraurantAddress`
+  - `restraurantPhoneNo`
+- 📂 Saves all data to **Firebase Firestore**
+- 🧩 Designed to work together with:
+  - **FoodDev React Native app** (mobile client)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 🧱 Tech Stack
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **React**
+- **Firebase Firestore**
+- CSS for styling
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
+🛠 Setup & Installation
+1️⃣ Clone the repo
+git clone https://github.com/ayush08m/fooddevadminpanel.git
+cd fooddevadminpanel
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2️⃣ Install dependencies
+npm install
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+or
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+yarn install
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+3️⃣ Firebase configuration
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Open:
 
-## Learn More
+src/Firebase/FirebaseConfig.js
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+and configure it like this:
 
-### Code Splitting
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_PROJECT.appspot.com",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId: "YOUR_APP_ID",
+};
 
-### Analyzing the Bundle Size
+const app = initializeApp(firebaseConfig);
+export const db = getFirestore(app);
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
+Make sure this Firebase project is the same one used in the FoodDev mobile app so both share the same database.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+✏️ Add Food Data (Component Overview)
 
-### Advanced Configuration
+Core form component (example: AddFoodData.js):
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Takes input fields:
 
-### Deployment
+Food name, price, description
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Category (Veg / Non-Veg)
 
-### `npm run build` fails to minify
+Image URL
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Restaurant details
+
+On submit:
+
+Builds a foodData object
+
+Calls addDoc(collection(db, "FoodData"), foodData)
+
+This collection (FoodData) is what the mobile app reads from.
+
+▶️ Run the app (development)
+npm start
+
+
+Opens at: http://localhost:3000/
+
+<img width="1918" height="1017" alt="image" src="https://github.com/user-attachments/assets/ee3bff5a-bc6c-4c0f-b315-1d5029d18ec5" />
+
+
+Use the form to add foods → verify in Firebase Console → Firestore → FoodData.
+
+🔗 Related Project (Mobile App)
+
+This admin panel is used to manage the food data consumed by my React Native app:
+
+👉 Mobile App Repo:
+https://github.com/ayush08m/FoodDev
+
+✨ Future Improvements
+
+Add authentication (only admins can log in and add items)
+
+Add edit / delete options for existing food items
+
+Show a table/list of all FoodData from Firestore
+
+Add image preview from image URL
+
+Add category dropdown instead of free text
+
+👨‍💻 Author
+
+Ayush More
+
+GitHub: @ayush08m
+
+## 📂 Project Structure (simplified)
+
+```bash
+fooddevadminpanel/
+  ├─ src/
+  │  ├─ Firebase/
+  │  │  └─ FirebaseConfig.js
+  │  ├─ components/
+  │  │  └─ AddFoodData.js
+  │  ├─ App.js
+  │  └─ index.js
+  ├─ public/
+  ├─ package.json
+  └─ README.md
